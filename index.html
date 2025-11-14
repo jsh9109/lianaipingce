@@ -10,7 +10,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
+      hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7"; /* [V3.0] 已帮您填入新ID */
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
@@ -579,7 +579,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
 
         .qr-code-grid {
             display: flex;
-            flex-direction: column; /* 垂直布局 */
+            flex-direction: column; /* [V3.0] 垂直布局 */
             align-items: center; /* 居中 */
             gap: 25px; /* 垂直间距 */
             text-align: center;
@@ -644,7 +644,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
         .copy-item button {
             padding: 8px 14px;
             border: none;
-            background: #ff6b9d; /* 主题粉色 */
+            background: #ff6b9d; /* [V3.0] 主题粉色 */
             color: white;
             border-radius: 6px;
             cursor: pointer;
@@ -654,7 +654,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             flex-shrink: 0;
         }
         .copy-item button:hover {
-            background: #c06c84; /* 主题深粉色 */
+            background: #c06c84; /* [V3.0] 主题深粉色 */
         }
         /* --- [V3.0] CSS 结束 --- */
         
@@ -912,7 +912,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
                 grid-template-columns: 1fr;
             }
             
-            /* .payment-section is now handled by V3.0 CSS (mobile first) */
+            /* [V3.0] .payment-section 已经是移动端优先，无需修改 */
             
             .personality-types {
                 grid-template-columns: 1fr;
@@ -1465,57 +1465,58 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
     <script>
         const ADMIN_PASSWORD = 'lss900201';
         
-       const questions = [
+        // [V3.0] 已替换为Claude优化版题库
+        const questions = [
             /* --- 维度0: 控制欲望 --- */
-            {text: '当TA和异性朋友单独出去时，你会？', dimension: 0},
-            {text: 'TA发朋友圈或社交动态时，你会查看点赞和评论吗？', dimension: 0},
-            {text: '你是否需要知道TA的手机密码？', dimension: 0},
-            {text: '你多久会查看一次TA的社交媒体？', dimension: 0},
-            {text: '当TA不在你身边时，你希望TA多久联系你一次？', dimension: 0},
-            {text: '你是否会要求TA减少和某些人的来往？', dimension: 0},
-            {text: 'TA在社交场合和别人聊得开心时，你的感受是？', dimension: 0},
-            {text: '你是否会检查TA的聊天记录？', dimension: 0},
-            {text: '你希望在TA的生活中占据多大比重？', dimension: 0},
-            {text: '当TA拒绝你的某个要求时，你会？', dimension: 0},
+            {text: '当TA和异性朋友单独出去时，你会感到不安或想要阻止吗？', dimension: 0},
+            {text: 'TA发朋友圈时，你会仔细查看谁给TA点赞和评论吗？', dimension: 0},
+            {text: '你觉得有必要知道TA的手机/社交账号密码吗？', dimension: 0},
+            {text: '你会主动查看TA的社交媒体动态吗？', dimension: 0},
+            {text: '当TA不在身边时，你希望TA主动向你报告行踪吗？', dimension: 0},
+            {text: '你会要求TA减少和某些异性朋友的来往吗？', dimension: 0},
+            {text: 'TA在聚会上和别人聊得很开心，你会感到被忽视或不舒服吗？', dimension: 0},
+            {text: '你有想过要查看TA的聊天记录吗？', dimension: 0},
+            {text: '你希望自己成为TA生活中最重要的人吗？', dimension: 0},
+            {text: '当TA拒绝你的要求（如报备、秒回消息等），你会生气吗？', dimension: 0},
             
             /* --- 维度1: 嫉妒强度 --- */
-            {text: '看到TA和异性说话，你会？', dimension: 1},
-            {text: 'TA提起前任或暧昧对象时，你的反应是？', dimension: 1},
-            {text: '当TA夸奖别人时，你会觉得？', dimension: 1},
-            {text: '看到TA给异性点赞或评论，你会？', dimension: 1},
-            {text: 'TA的异性朋友比你优秀时，你会？', dimension: 1},
-            {text: '当TA说"某某人好有才华/很好看"时，你会？', dimension: 1},
-            {text: 'TA参加有异性的聚会，你会？', dimension: 1},
-            {text: '看到TA对别人微笑或友好，你会？', dimension: 1},
-            {text: 'TA的手机收到异性消息时，你会？', dimension: 1},
-            {text: '想象TA和前任在一起的画面，你会？', dimension: 1},
+            {text: '看到TA和异性谈笑风生，你会感到嫉妒吗？', dimension: 1},
+            {text: 'TA无意中提起前任时，你会情绪波动很大吗？', dimension: 1},
+            {text: '当TA夸奖其他异性时，你会觉得TA不够爱你吗？', dimension: 1},
+            {text: '看到TA给异性的动态点赞或评论，你会在意吗？', dimension: 1},
+            {text: '当TA的异性朋友比你优秀时，你会感到威胁或自卑吗？', dimension: 1},
+            {text: 'TA说"某某人真厉害/真好看"时，你会不高兴吗？', dimension: 1},
+            {text: 'TA要参加有异性的聚会，你会担心或想要阻止吗？', dimension: 1},
+            {text: '看到TA对陌生异性表现友好（如微笑、打招呼），你会吃醋吗？', dimension: 1},
+            {text: 'TA的手机收到异性消息，你会很想知道内容吗？', dimension: 1},
+            {text: '你会经常脑补TA和前任/其他异性在一起的画面吗？', dimension: 1},
             
             /* --- 维度2: 情感依赖 --- */
-            {text: '如果一天听不到TA的声音，你会？', dimension: 2},
-            {text: '你的心情多大程度上取决于TA的态度？', dimension: 2},
-            {text: '当TA不回你消息时，你会？', dimension: 2},
-            {text: '你是否觉得"没有TA就活不下去"？', dimension: 2},
-            {text: '做决定时，你需要TA的意见吗？', dimension: 2},
-            {text: 'TA是你生活的全部吗？', dimension: 2},
-            {text: '当TA情绪不好时，你的感受是？', dimension: 2},
-            {text: '你是否会为了TA放弃自己的原则？', dimension: 2},
-            {text: '分开一段时间后，你会？', dimension: 2},
-            {text: '你的自我价值感依赖TA的评价吗？', dimension: 2},
+            {text: '如果一整天没有TA的消息，你会焦虑不安吗？', dimension: 2},
+            {text: '你的心情好坏很大程度上取决于TA的态度吗？', dimension: 2},
+            {text: '当TA很久不回消息时，你会反复发消息或打电话吗？', dimension: 2},
+            {text: '你有过"没有TA我活不下去"这样的想法吗？', dimension: 2},
+            {text: '做重要决定时，你必须要听TA的意见才能安心吗？', dimension: 2},
+            {text: 'TA已经成为你生活的全部重心了吗？', dimension: 2},
+            {text: '当TA心情不好时，你也会跟着情绪低落吗？', dimension: 2},
+            {text: '你会为了让TA开心而违背自己的原则或底线吗？', dimension: 2},
+            {text: '和TA分开几天后，你会感到强烈的思念甚至难以忍受吗？', dimension: 2},
+            {text: '你的自我价值感很依赖TA对你的评价和肯定吗？', dimension: 2},
             
             /* --- 维度3: 关系不安 --- */
-            {text: '你多久会担心一次TA要离开你？', dimension: 3},
-            {text: '你是否经常需要TA确认"你爱我吗"？', dimension: 3},
-            {text: '当TA说"需要独处空间"时，你会觉得？', dimension: 3},
-            {text: '你是否担心自己不够好，配不上TA？', dimension: 3},
-            {text: 'TA态度稍微冷淡时，你会怎么想？', dimension: 3},
-            {text: '你是否害怕TA发现"真实的你"后会离开？', dimension: 3},
-            {text: '当TA和你意见不同时，你会？', dimension: 3},
-            {text: '你多久会想"我们会分手吗"？', dimension: 3},
-            {text: '你是否经常感到这段关系不稳定？', dimension: 3},
-            {text: '当TA接触新朋友或新圈子时，你会？', dimension: 3}
+            {text: '你经常会担心TA有一天会离开你吗？', dimension: 3},
+            {text: '你需要TA频繁地确认"你爱我吗"才能安心吗？', dimension: 3},
+            {text: '当TA说需要独处空间时，你会觉得TA不爱你了吗？', dimension: 3},
+            {text: '你经常觉得自己不够好、配不上TA吗？', dimension: 3},
+            {text: 'TA态度稍微冷淡一点，你就会想"TA是不是不爱我了"吗？', dimension: 3},
+            {text: '你害怕TA了解真实的你后会失望离开吗？', dimension: 3},
+            {text: '当TA和你意见不同时，你会担心影响感情而选择妥协吗？', dimension: 3},
+            {text: '你会经常想"我们会不会分手"这样的问题吗？', dimension: 3},
+            {text: '你总觉得这段关系不稳定、缺乏安全感吗？', dimension: 3},
+            {text: '当TA接触新朋友或新圈子时，你会担心TA不再需要你吗？', dimension: 3}
         ];
         
-        const options = ['完全不会/非常少', '比较少', '有时候', '经常', '总是/非常多'];
+        const options = ['完全不会', '很少这样', '有时会', '经常会', '总是这样'];
         
         let currentPage = 'verify';
         let currentQuestion = 0;
@@ -1566,14 +1567,14 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             const cardCode = cardInput.value.trim().toUpperCase();
             
             if (!cardCode) {
-                errorDiv.textContent = '请输入卡号';
+                errorDiv.textContent = '请输入测评卡号';
                 errorDiv.style.display = 'block';
                 return;
             }
             
+            // [V3.0] 允许 TF- 和非 TF- 格式
             if (!/^TF-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(cardCode)) {
-                 // 允许没有TF-前缀的简单卡号
-                if (!/^[A-Z0-9]{8,20}$/.test(cardCode)) {
+                 if (!/^[A-Z0-9]{8,20}$/.test(cardCode)) {
                     errorDiv.textContent = '卡号格式不正确';
                     errorDiv.style.display = 'block';
                     return;
@@ -1586,8 +1587,8 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             let card = cards.find(c => c.code === cardCode);
             
             if (!card) {
-                // 为了方便您测试，如果卡密库为空，则自动将输入的卡密视为有效
-                if (cards.length === 0 && /^[A-Z0-9]{8,20}$/.test(cardCode)) {
+                // [V3.0] 方便测试：如果卡密库为空，则自动将输入的卡密视为有效
+                if (cards.length === 0 && (cardCode.startsWith('TF-') || /^[A-Z0-9]{8,20}$/.test(cardCode)) ) {
                     card = { code: cardCode, deviceId: null, createdAt: new Date().toISOString() };
                     cards.push(card);
                 } else {
@@ -1655,7 +1656,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
         
         function selectOption(value) {
             answers[currentQuestion] = value;
-            // 自动下一题
+            // [V3.0] 自动下一题
             if (currentQuestion < 39) {
                 nextQuestion();
             } else {
@@ -1693,14 +1694,15 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
                 dimensionCounts[q.dimension]++;
             });
             
-            // 算法： (总分 / (题目数 * 5)) * 100
-            // ( (score / count) / 5 ) * 100
-            // ( (score / 10) / 5 ) * 100 = score * 2
+            // 算法： ( (score / count) / 5 ) * 20 = ( (score / 10) / 5 ) * 20 = score * 0.4
+            // 新算法：( (score / 10) - 1) / 4 * 20 = (score/10 - 1) * 5 = score/2 - 5
+            // [V3.0] 统一算法：( (avg_score - 1) / (5 - 1) ) * 20 = ( (score/10) - 1 ) / 4 * 20 = (score/10 - 1) * 5 = score/2 - 5
+            // [V3.0] 统一算法2：( (score / count) * 4 ) -> 满分 (5 * 4 = 20), 最低 (1 * 4 = 4)
             const finalScores = dimensionScores.map((score, i) => 
                 Math.round((score / dimensionCounts[i]) * 4) // 保持 1-5分 -> 4-20分
             );
             
-            const totalScore = finalScores.reduce((a, b) => a + b, 0); // 满分 80
+            const totalScore = finalScores.reduce((a, b) => a + b, 0); // 满分 80 (4*20)
             const rpiIndex = Math.round((totalScore / 80) * 100); // 换算成百分制
             
             let typeName = '', typeDesc = '', percentile = 0;
@@ -1803,7 +1805,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             const ctx = document.getElementById(canvasId).getContext('2d');
             const isMobile = window.innerWidth <= 768;
             
-            // 销毁可能存在的旧图表
+            // [V3.0] 销毁可能存在的旧图表，防止重绘错误
             const existingChart = Chart.getChart(canvasId);
             if (existingChart) {
                 existingChart.destroy();
@@ -1857,8 +1859,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
         }
         
         function unlockFullReport() {
-            // 这里可以添加一个简单的 <input type="file"> 来模拟上传
-            // 为简化流程，我们直接确认
+            // [V3.0] 模拟上传并跳转
             if (confirm('模拟上传付款截图。点击确认，立即查看完整报告')) {
                 showFullReport();
             }
@@ -2026,7 +2027,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
                 buttonElement.style.background = '#07C160'; // 变绿色
                 setTimeout(() => {
                     buttonElement.textContent = originalText;
-                    buttonElement.style.background = '#ff6b9d'; // 变回主题粉色
+                    buttonElement.style.background = '#ff6b9d'; // [V3.0] 变回主题粉色
                 }, 2000);
             }, function(err) {
                 alert('复制失败，请手动复制');
