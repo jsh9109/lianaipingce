@@ -1465,8 +1465,8 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
     <script>
         const ADMIN_PASSWORD = 'lss900201';
         
-        const questions = [
-            // ... (40个恋爱测评题目) ...
+       const questions = [
+            /* --- 维度0: 控制欲望 --- */
             {text: '当TA和异性朋友单独出去时，你会？', dimension: 0},
             {text: 'TA发朋友圈或社交动态时，你会查看点赞和评论吗？', dimension: 0},
             {text: '你是否需要知道TA的手机密码？', dimension: 0},
@@ -1478,6 +1478,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             {text: '你希望在TA的生活中占据多大比重？', dimension: 0},
             {text: '当TA拒绝你的某个要求时，你会？', dimension: 0},
             
+            /* --- 维度1: 嫉妒强度 --- */
             {text: '看到TA和异性说话，你会？', dimension: 1},
             {text: 'TA提起前任或暧昧对象时，你的反应是？', dimension: 1},
             {text: '当TA夸奖别人时，你会觉得？', dimension: 1},
@@ -1489,6 +1490,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             {text: 'TA的手机收到异性消息时，你会？', dimension: 1},
             {text: '想象TA和前任在一起的画面，你会？', dimension: 1},
             
+            /* --- 维度2: 情感依赖 --- */
             {text: '如果一天听不到TA的声音，你会？', dimension: 2},
             {text: '你的心情多大程度上取决于TA的态度？', dimension: 2},
             {text: '当TA不回你消息时，你会？', dimension: 2},
@@ -1500,6 +1502,7 @@ hm.src = "https://hm.baidu.com/hm.js?4e18d107a778198f9a7ddebfaa1b02b7";
             {text: '分开一段时间后，你会？', dimension: 2},
             {text: '你的自我价值感依赖TA的评价吗？', dimension: 2},
             
+            /* --- 维度3: 关系不安 --- */
             {text: '你多久会担心一次TA要离开你？', dimension: 3},
             {text: '你是否经常需要TA确认"你爱我吗"？', dimension: 3},
             {text: '当TA说"需要独处空间"时，你会觉得？', dimension: 3},
