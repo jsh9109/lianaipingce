@@ -896,9 +896,8 @@
                 font-size: 1em;
             }
             
-            .dimensions-grid {
-                grid-template-columns: 1fr;
-            }
+            /* [V3.0] 删除了 .dimensions-grid { grid-template-columns: 1fr; } 
+               现在手机上也会是 2x2 布局 */
             
             .chart-container {
                 height: 320px;
@@ -972,7 +971,13 @@
                 <span class="badge">🔬 基于心理学研究的专业测评工具</span>
             </div>
             
-            <div class="dimensions-grid">
+            <div class="input-group">
+                <input type="text" id="cardInput" placeholder="请输入测评卡号" maxlength="20">
+            </div>
+            
+            <button class="btn btn-primary" onclick="verifyCard()">💖 开始测评</button>
+            
+            <div class="dimensions-grid" style="margin-top: 40px;">
                 <div class="dimension-card">
                     <div class="dimension-icon">📊</div>
                     <div class="dimension-name">控制欲望</div>
@@ -1004,12 +1009,6 @@
                     <li>恋爱建议 + 关系成长指南</li>
                 </ul>
             </div>
-            
-            <div class="input-group">
-                <input type="text" id="cardInput" placeholder="请输入测评卡号" maxlength="20">
-            </div>
-            
-            <button class="btn btn-primary" onclick="verifyCard()">💖 开始测评</button>
             
             <div class="error-message" id="errorMessage"></div>
             
@@ -1516,6 +1515,7 @@
             {text: '当TA接触新朋友或新圈子时，你会担心TA不再需要你吗？', dimension: 3}
         ];
         
+        // [V3.0] 修正了选项文字
         const options = ['完全不会', '很少这样', '有时会', '经常会', '总是这样'];
         
         let currentPage = 'verify';
@@ -1694,10 +1694,7 @@
                 dimensionCounts[q.dimension]++;
             });
             
-            // 算法： ( (score / count) / 5 ) * 20 = ( (score / 10) / 5 ) * 20 = score * 0.4
-            // 新算法：( (score / 10) - 1) / 4 * 20 = (score/10 - 1) * 5 = score/2 - 5
-            // [V3.0] 统一算法：( (avg_score - 1) / (5 - 1) ) * 20 = ( (score/10) - 1 ) / 4 * 20 = (score/10 - 1) * 5 = score/2 - 5
-            // [V3.0] 统一算法2：( (score / count) * 4 ) -> 满分 (5 * 4 = 20), 最低 (1 * 4 = 4)
+            // [V3.0] 统一算法：( (avg_score) * 4 ) -> 满分 (5 * 4 = 20), 最低 (1 * 4 = 4)
             const finalScores = dimensionScores.map((score, i) => 
                 Math.round((score / dimensionCounts[i]) * 4) // 保持 1-5分 -> 4-20分
             );
@@ -1860,6 +1857,7 @@
         
         function unlockFullReport() {
             // [V3.0] 模拟上传并跳转
+            // 你可以替换成一个真实的 <input type="file"> 逻辑
             if (confirm('模拟上传付款截图。点击确认，立即查看完整报告')) {
                 showFullReport();
             }
