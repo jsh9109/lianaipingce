@@ -1561,6 +1561,7 @@
             }
         }
         
+      /* --- [V3.1] 修复卡密绑定逻辑 --- */
         function verifyCard() {
             const cardInput = document.getElementById('cardInput');
             const errorDiv = document.getElementById('errorMessage');
@@ -1572,7 +1573,7 @@
                 return;
             }
             
-            // [V3.0] 允许 TF- 和非 TF- 格式
+            // 格式检查
             if (!/^TF-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(cardCode)) {
                  if (!/^[A-Z0-9]{8,20}$/.test(cardCode)) {
                     errorDiv.textContent = '卡号格式不正确';
@@ -1582,37 +1583,44 @@
             }
             
             const deviceId = getDeviceFingerprint();
-            // [V3.0] 关键修复：使用 'loveCards' 避免和第一个项目冲突
+            // 关键修复：使用 'loveCards' 避免和第一个项目冲突
             let cards = JSON.parse(localStorage.getItem('loveCards') || '[]');
             let card = cards.find(c => c.code === cardCode);
             
+            // --- [V3.1] 逻辑修正开始 ---
             if (!card) {
-                // [V3.0] 方便测试：如果卡密库为空，则自动将输入的卡密视为有效
-                if (cards.length === 0 && (cardCode.startsWith('TF-') || /^[A-Z0-9]{8,20}$/.test(cardCode)) ) {
-                    card = { code: cardCode, deviceId: null, createdAt: new Date().toISOString() };
-                    cards.push(card);
-                } else {
-                    errorDiv.textContent = '卡号不存在或已失效';
+                // 如果卡号不存在，就创建它，并绑定到当前设备
+                card = { 
+                    code: cardCode, 
+                    deviceId: deviceId, // 立即绑定
+                    createdAt: new Date().toISOString(),
+                    firstUsedAt: new Date().toISOString(),
+                    testCount: 0 // 初始测试次数
+                };
+                cards.push(card);
+                
+                // (不需要显示“不存在”，因为我们是“首次使用即绑定”)
+
+            } else {
+                // 如果卡号存在，检查设备ID
+                if (card.deviceId && card.deviceId !== deviceId) {
+                    errorDiv.textContent = '该卡号已在其他设备使用，无法在本设备使用';
                     errorDiv.style.display = 'block';
                     return;
                 }
+                
+                // (兼容旧卡) 如果找到卡，但它没有deviceId，就绑定它
+                if (!card.deviceId) {
+                    card.deviceId = deviceId;
+                    card.firstUsedAt = new Date().toISOString();
+                }
             }
-            
-            if (card.deviceId && card.deviceId !== deviceId) {
-                errorDiv.textContent = '该卡号已在其他设备使用，无法在本设备使用';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            if (!card.deviceId) {
-                card.deviceId = deviceId;
-                card.firstUsedAt = new Date().toISOString();
-            }
-            
+            // --- [V3.1] 逻辑修正结束 ---
+
+            // 无论如何，都更新测试次数和最后使用时间
             card.testCount = (card.testCount || 0) + 1;
             card.lastUsedAt = new Date().toISOString();
             
-            // [V3.0] 关键修复：使用 'loveCards'
             localStorage.setItem('loveCards', JSON.stringify(cards));
             
             currentCard = card;
