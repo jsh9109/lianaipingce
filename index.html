@@ -1178,7 +1178,11 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" onclick="unlockFullReport()" style="margin-top: 30px;">📸 上传付款截图，查看完整报告</button>
+               <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    📸 上传付款截图，查看完整报告
+                </label>
+                <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+                
             </div>
         </div>
         
@@ -1863,12 +1867,18 @@
             });
         }
         
-        function unlockFullReport() {
-            // [V3.0] 模拟上传并跳转
-            // 你可以替换成一个真实的 <input type="file"> 逻辑
-            if (confirm('模拟上传付款截图。点击确认，立即查看完整报告')) {
+     /* --- [V3.2] 真实(模拟)上传逻辑 --- */
+        // 当用户选择了文件后，此函数会被触发
+        function handlePaymentProof(event) {
+            const file = event.target.files[0];
+            
+            // 检查用户是否真的选择了一个文件
+            if (file) {
+                // 只要有文件被选中 (无论是什么文件)，
+                // 我们就立即显示完整报告。
                 showFullReport();
             }
+            // 如果用户取消了选择，什么也不做
         }
         
         function showFullReport() {
