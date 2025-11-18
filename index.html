@@ -1218,9 +1218,7 @@
                 <p><strong>3. 失控的恐惧</strong> - 亲密关系中的不确定性让你极度不安。你试图通过控制来获得"掌控感"。</p>
             </div>
             
-            <div class="report-section">
-                <h3>👤 第二部分：12种占有欲人格画像</h3>
-                <div class="personality-types">
+          <div class="personality-types" id="paidTypeList">
                     <div class="personality-type">
                         <div class="type-number">类型1</div>
                         <div class="type-name">健康独立型</div>
@@ -1256,8 +1254,8 @@
                         <div class="type-name">病态嫉妒型</div>
                         <div class="type-score">83-88分</div>
                     </div>
-                    <div class="personality-type current">
-                        <div class="type-number">类型8 ⭐ 你在这里</div>
+                    <div class="personality-type">
+                        <div class="type-number">类型8</div>
                         <div class="type-name">共依存融合型</div>
                         <div class="type-score">89-94分</div>
                     </div>
@@ -1883,26 +1881,72 @@
             // 如果用户取消了选择，什么也不做
         }
         
-        function showFullReport() {
+ function showFullReport() {
             const result = JSON.parse(sessionStorage.getItem('testResult'));
+            const score = result.rpiIndex; // 获取分数
             
             document.getElementById('freeResultPage').classList.add('hidden');
             document.getElementById('fullReportPage').classList.remove('hidden');
             
-            document.getElementById('fullRpiScore').textContent = result.rpiIndex;
+            document.getElementById('fullRpiScore').textContent = score;
             
             let level = '';
-            if (result.rpiIndex <= 35) level = '健康范围';
-            else if (result.rpiIndex <= 65) level = '适度水平';
-            else if (result.rpiIndex <= 82) level = '偏高水平';
-            else if (result.rpiIndex <= 94) level = '很高（需注意）';
+            if (score <= 35) level = '健康范围';
+            else if (score <= 65) level = '适度水平';
+            else if (score <= 82) level = '偏高水平';
+            else if (score <= 94) level = '很高（需注意）';
             else level = '极高（爱到极致）';
             
             document.getElementById('fullRpiLevel').textContent = level;
             drawRadarChart('fullRadarChart', result.scores);
+
+            /* --- [修复] 动态高亮付费页面的12种类型 --- */
+            // 1. 确定当前分数属于哪个类型索引 (0-11)
+            let typeIndex = 0;
+            if (score <= 20) typeIndex = 0;      // 类型1
+            else if (score <= 35) typeIndex = 1; // 类型2
+            else if (score <= 50) typeIndex = 2; // 类型3
+            else if (score <= 65) typeIndex = 3; // 类型4
+            else if (score <= 75) typeIndex = 4; // 类型5
+            else if (score <= 82) typeIndex = 5; // 类型6
+            else if (score <= 88) typeIndex = 6; // 类型7
+            else if (score <= 94) typeIndex = 7; // 类型8
+            else if (score <= 97) typeIndex = 8; // 类型9
+            else if (score <= 99) typeIndex = 9; // 类型10
+            else if (score == 100) typeIndex = 10; // 类型11
+            else typeIndex = 11; // 类型12 (特殊情况)
+
+            // 2. 获取所有类型盒子 (注意：前提是您必须完成了HTML部分的ID修改)
+            const typeBoxes = document.querySelectorAll('#paidTypeList .personality-type');
+            
+            // 3. 移除所有旧的高亮
+            typeBoxes.forEach(box => {
+                box.classList.remove('current');
+                const numDiv = box.querySelector('.type-number');
+                // 移除可能存在的星星文字
+                if (numDiv) {
+                    numDiv.textContent = numDiv.textContent.replace(' ⭐ 你在这里', ''); 
+                }
+            });
+
+            // 4. 给当前对应的盒子添加高亮
+            if (typeBoxes[typeIndex]) {
+                const targetBox = typeBoxes[typeIndex];
+                targetBox.classList.add('current');
+                // 添加星星标记
+                const numDiv = targetBox.querySelector('.type-number');
+                if (numDiv) {
+                    numDiv.textContent += ' ⭐ 你在这里';
+                }
+                
+                // 自动滚动到这个位置，让用户看到
+                setTimeout(() => {
+                    targetBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }
+            
             window.scrollTo(0, 0);
         }
-        
         function showAdminPanel() {
             document.getElementById('cardVerifyPage').classList.add('hidden');
             document.getElementById('adminPanel').classList.remove('hidden');
